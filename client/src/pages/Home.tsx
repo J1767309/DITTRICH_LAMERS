@@ -44,13 +44,13 @@ export default function Home() {
         <div className="bg-slate-900 text-white py-8 px-4 md:absolute md:bottom-0 md:left-0 md:right-0 md:bg-slate-900/90 md:py-6">
           <div className="container mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-              Family Law Attorneys
+              Expert Family Law Representation
             </h1>
             <p className="text-base md:text-lg mb-2 max-w-3xl mx-auto">
-              We Focus Exclusively on Family Law and Marriage Dissolution Issues.
+              Supporting Families & Service Members Through Life's Transitions
             </p>
             <p className="text-sm md:text-base mb-4 max-w-2xl mx-auto">
-              More than <strong>30 years</strong> of combined experience serving individuals in their family and divorce-related issues. Serving Rochester, MN and beyond.
+              More than <strong>30 years</strong> of combined experience serving civilian and military families in Rochester, MN and beyond.
             </p>
             <Link href="/contact">
               <Button size="lg" className="bg-slate-700 hover:bg-slate-800 text-white px-6 py-3 text-base">
