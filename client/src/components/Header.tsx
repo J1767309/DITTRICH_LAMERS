@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { publicAsset } from "@/lib/utils";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,9 +13,9 @@ export default function Header() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <img 
-              src="/DittrichLamers_Logo_outlined.png" 
-              alt="Dittrich & Lamers, LLP" 
+            <img
+              src={publicAsset("/DittrichLamers_Logo_outlined.png")}
+              alt="Dittrich & Lamers, LLP"
               className="h-12 w-auto"
             />
           </Link>

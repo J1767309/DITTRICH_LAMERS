@@ -1,6 +1,7 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { useEffect } from 'react';
+import { publicAsset } from '@/lib/utils';
 
 const credentials = [
   {
@@ -78,7 +79,7 @@ export default function CredentialsCarousel() {
               >
                 <div className="bg-white rounded-lg p-6 h-32 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow">
                   <img
-                    src={credential.image}
+                    src={publicAsset(credential.image)}
                     alt={credential.alt}
                     className="max-w-full max-h-full object-contain"
                   />
