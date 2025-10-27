@@ -8,6 +8,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import SEO from "@/components/SEO";
+import { publicAsset } from "@/lib/utils";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ export default function Contact() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="/contact-hero-bg.jpg" 
+            src={publicAsset("/contact-hero-bg.jpg")} 
             alt="Professional law office background" 
             className="w-full h-full object-cover object-center"
             loading="lazy"

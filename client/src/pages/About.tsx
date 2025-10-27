@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import SEO from "@/components/SEO";
 import { Award, Heart, Shield } from "lucide-react";
+import { publicAsset } from "@/lib/utils";
 
 export default function About() {
   return (
@@ -19,7 +20,7 @@ export default function About() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="/law-library.jpg" 
+            src={publicAsset("/law-library.jpg")} 
             alt="Professional law library with legal books and resources" 
             className="w-full h-full object-cover"
             loading="lazy"
@@ -87,7 +88,7 @@ export default function About() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
               <div className="lg:col-span-1">
                 <img 
-                  src="/amber-lamers-photo.png" 
+                  src={publicAsset("/amber-lamers-photo.png")} 
                   alt="Amber Lamers" 
                   className="w-full rounded-lg shadow-lg"
                 />
@@ -120,7 +121,7 @@ export default function About() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
               <div className="lg:col-span-1 order-1 lg:order-2">
                 <img 
-                  src="/steve-dittrich.jpg" 
+                  src={publicAsset("/steve-dittrich.jpg")} 
                   alt="Steve Dittrich - Family Law Attorney" 
                   className="w-full rounded-lg shadow-lg"
                   loading="lazy"

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
 import { Scale, Users, Shield, FileText, Home as HomeIcon, Gavel, FileEdit, DollarSign, UserX, Heart } from "lucide-react";
+import { publicAsset } from "@/lib/utils";
 
 export default function PracticeAreas() {
   const practiceAreas = [
@@ -75,7 +76,7 @@ export default function PracticeAreas() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="/scales-justice.jpg" 
+            src={publicAsset("/scales-justice.jpg")} 
             alt="Scales of justice and gavel representing family law practice" 
             className="w-full h-full object-cover"
             loading="lazy"

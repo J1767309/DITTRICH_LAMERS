@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CredentialsCarousel from "@/components/CredentialsCarousel";
 import SEO from "@/components/SEO";
 import { Scale, Users, Shield, FileText, Home as HomeIcon, Gavel, FileEdit, DollarSign, UserX, Heart } from "lucide-react";
+import { publicAsset } from "@/lib/utils";
 
 export default function Home() {
   const practiceAreas = [
@@ -31,7 +32,7 @@ export default function Home() {
         {/* Hero Image */}
         <div className="h-[350px] md:h-full overflow-hidden">
           <img 
-            src="/hero-enhanced.png" 
+            src={publicAsset("/hero-enhanced.png")} 
             alt="Dittrich & Lamers Family Law Attorneys - Rochester, Minnesota" 
             className="w-full h-full object-cover object-[center_50%] md:object-[center_65%] md:pb-[85px]"
             loading="eager"
@@ -93,7 +94,7 @@ export default function Home() {
             <Card className="overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-80 overflow-hidden">
                 <img 
-                  src="/amber-lamers-photo.png" 
+                  src={publicAsset("/amber-lamers-photo.png")} 
                   alt="Amber Lamers" 
                   className="w-full h-full object-cover"
                 />
@@ -112,7 +113,7 @@ export default function Home() {
             <Card className="overflow-hidden hover:shadow-xl transition-shadow">
               <div className="h-80 overflow-hidden">
                 <img 
-                  src="/steve-dittrich.jpg" 
+                  src={publicAsset("/steve-dittrich.jpg")} 
                   alt="Steve Dittrich - Family Law Attorney" 
                   className="w-full h-full object-cover"
                   loading="lazy"
