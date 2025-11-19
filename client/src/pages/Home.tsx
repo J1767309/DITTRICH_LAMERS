@@ -103,7 +103,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4">
                   Amber began her legal career as a family law legal assistant in Rochester, Minnesota, before earning her law degree from Hamline University in 2006. She is recognized as a Super Lawyers Rising Star and is an active member of multiple bar associations.
                 </p>
-                <Link href="/about">
+                <Link href="/attorneys/amber-lamers">
                   <Button variant="outline" className="w-full">View Full Profile</Button>
                 </Link>
               </CardContent>
@@ -123,7 +123,7 @@ export default function Home() {
                 <p className="text-gray-600 mb-4">
                   Steven has been a family law attorney since 1999. A retired U.S. Army Reserve officer with 22 years of service, he specializes in divorce, custody, support, property division, and military family law.
                 </p>
-                <Link href="/about">
+                <Link href="/attorneys/steve-dittrich">
                   <Button variant="outline" className="w-full">View Full Profile</Button>
                 </Link>
               </CardContent>

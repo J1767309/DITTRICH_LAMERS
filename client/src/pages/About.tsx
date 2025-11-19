@@ -1,9 +1,11 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import SEO from "@/components/SEO";
 import { Award, Heart, Shield } from "lucide-react";
 import { publicAsset } from "@/lib/utils";
+import { Link } from "wouter";
 
 export default function About() {
   return (
@@ -112,6 +114,11 @@ export default function About() {
                     She is also a mother of two and understands the challenges of balancing work and family.
                   </p>
                 </div>
+                <div className="mt-6">
+                  <Link href="/attorneys/amber-lamers">
+                    <Button variant="outline" className="w-full">View Full Profile</Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -142,6 +149,11 @@ export default function About() {
                   <p>
                     He is also active in mentoring, youth sports coaching, and community service.
                   </p>
+                </div>
+                <div className="mt-6">
+                  <Link href="/attorneys/steve-dittrich">
+                    <Button variant="outline" className="w-full">View Full Profile</Button>
+                  </Link>
                 </div>
               </div>
             </div>
