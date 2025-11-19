@@ -41,9 +41,9 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SEO 
+      <SEO
         title="Contact Us - Dittrich & Lamers, LLP Family Law Attorneys"
-        description="Contact Dittrich & Lamers, LLP for expert family law representation in Rochester, MN. Call 507-288-5567 or visit us at 3143 Superior Drive NW, Suite C."
+        description="Contact Dittrich & Lamers, LLP for expert family law representation in Rochester, MN. Call (507) 288-7365 or visit us at 3143 Superior Drive NW, Suite C."
         canonicalUrl="/contact"
         ogImage="/attorneys-outdoor.jpg"
       />
@@ -192,10 +192,21 @@ export default function Contact() {
                   <div className="flex items-start mb-4">
                     <Phone className="h-6 w-6 text-slate-700 mr-3 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-bold text-lg mb-1">Phone</h3>
-                      <a href="tel:5072809999" className="text-slate-700 hover:text-slate-800 text-lg">
-                        (507) 280-9999
-                      </a>
+                      <h3 className="font-bold text-lg mb-3">Phone</h3>
+                      <div className="space-y-2">
+                        <div>
+                          <p className="font-semibold text-gray-900">Steve:</p>
+                          <a href="tel:5072887365" className="text-slate-700 hover:text-slate-800 text-lg">
+                            (507) 288-7365
+                          </a>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">Amber:</p>
+                          <a href="tel:5072887365" className="text-slate-700 hover:text-slate-800 text-lg">
+                            (507) 288-7365
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>

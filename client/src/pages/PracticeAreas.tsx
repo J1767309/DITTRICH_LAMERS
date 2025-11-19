@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import SEO from "@/components/SEO";
-import { Scale, Users, Shield, FileText, Home as HomeIcon, Gavel, FileEdit, DollarSign, UserX, Heart } from "lucide-react";
+import { Scale, Users, Shield, FileText, Home as HomeIcon, Gavel, FileEdit, DollarSign, Heart } from "lucide-react";
 import { publicAsset } from "@/lib/utils";
 
 export default function PracticeAreas() {
@@ -43,11 +43,6 @@ export default function PracticeAreas() {
       icon: FileEdit,
       title: "Modification",
       description: "Custody, support, or other agreements due to life changes. We help modify existing orders when circumstances change significantly."
-    },
-    {
-      icon: UserX,
-      title: "Termination of Parental Rights",
-      description: "Legal process for ending parental responsibilities and rights. We handle these sensitive cases with appropriate care and expertise."
     },
     {
       icon: FileText,

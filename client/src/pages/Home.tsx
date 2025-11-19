@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CredentialsCarousel from "@/components/CredentialsCarousel";
 import SEO from "@/components/SEO";
-import { Scale, Users, Shield, FileText, Home as HomeIcon, Gavel, FileEdit, DollarSign, UserX, Heart } from "lucide-react";
+import { Scale, Users, Shield, FileText, Home as HomeIcon, Gavel, FileEdit, DollarSign, Heart } from "lucide-react";
 import { publicAsset } from "@/lib/utils";
 
 export default function Home() {
@@ -19,7 +19,6 @@ export default function Home() {
     { icon: FileEdit, title: "Modification", description: "Custody, support, or other agreements due to life changes" },
     { icon: DollarSign, title: "Child Support", description: "Establishing, modifying, or enforcing child support obligations" },
     { icon: FileText, title: "Spousal Maintenance", description: "Determining or adjusting financial support between spouses" },
-    { icon: UserX, title: "Termination of Parental Rights", description: "Legal process for ending parental responsibilities and rights" },
   ];
 
   return (

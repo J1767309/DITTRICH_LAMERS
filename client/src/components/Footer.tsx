@@ -52,11 +52,12 @@ export default function Footer() {
                   Rochester, Minnesota 55901
                 </span>
               </li>
-              <li className="flex items-center">
-                <Phone className="h-5 w-5 mr-2 flex-shrink-0 text-slate-400" />
-                <a href="tel:5072809999" className="text-gray-300 hover:text-slate-300 transition-colors">
-                  (507) 280-9999
-                </a>
+              <li className="flex items-start">
+                <Phone className="h-5 w-5 mr-2 mt-1 flex-shrink-0 text-slate-400" />
+                <div className="text-gray-300">
+                  <div>Steve: <a href="tel:5072887365" className="hover:text-slate-300 transition-colors">(507) 288-7365</a></div>
+                  <div>Amber: <a href="tel:5072887365" className="hover:text-slate-300 transition-colors">(507) 288-7365</a></div>
+                </div>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 flex-shrink-0 text-slate-400" />
