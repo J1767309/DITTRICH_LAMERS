@@ -43,7 +43,7 @@ export default function Home() {
         <div className="bg-slate-900 text-white py-8 px-4 md:absolute md:bottom-0 md:left-0 md:right-0 md:bg-slate-900/90 md:py-6">
           <div className="container mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
-              Expert Family Law Representation
+              Experienced and Knowledgeable Family Law Representation
             </h1>
             <p className="text-base md:text-lg mb-2 max-w-3xl mx-auto">
               Supporting Families & Service Members Through Life's Transitions
