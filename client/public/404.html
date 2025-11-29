@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dittrich & Lamers, LLP</title>
+    <script>
+      // Single Page App redirect for GitHub Pages
+      // Stores the current path and redirects to index.html
+      // The app will then read sessionStorage and navigate to the correct route
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const hash = window.location.hash;
+      sessionStorage.setItem('redirectPath', path + search + hash);
+
+      // Get the base path (for GitHub Pages subdirectory deployment)
+      const basePath = '/DITTRICH_LAMERS/';
+      window.location.replace(basePath);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
