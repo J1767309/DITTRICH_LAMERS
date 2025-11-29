@@ -64,21 +64,29 @@ export default function SteveDittrich() {
               </div>
 
               <div className="lg:col-span-2">
-                <h2 className="text-3xl font-bold mb-6 text-gray-900">About Steve</h2>
+                <h2 className="text-3xl font-bold mb-6 text-gray-900">Steve Dittrich</h2>
                 <div className="prose prose-lg text-gray-700 space-y-4">
                   <p>
-                    Steven has been a family law attorney since 1999, handling cases in Minnesota's District, Appellate, and Supreme Courts. He specializes in divorce, custody, support, property division, and military family law.
+                    Attorney Steve Dittrich brings over 25 years of family law experience and distinguished military service to his practice throughout Minnesota. Recognized with a LexisNexis Martindale-Hubbell Peer Review Rating of Distinguished for Ethical Standards and Legal Ability, and named a Top 100 Family Law Lawyer in Minnesota by The American Society of Legal Advocates, he has built an exceptional career representing clients in marriage dissolution, custody disputes, property division, and military family law matters. Known for his skilled negotiation and ability to defuse emotionally charged situations, Steve combines extensive courtroom experience with the discipline and dedication forged through 22 years of military service.
                   </p>
                   <p>
-                    A retired U.S. Army Reserve officer with 22 years of service, he deployed to Afghanistan and led missions in Germany and El Salvador.
+                    Steve began his private practice in 1999, representing individuals in Minnesota District Court, Minnesota Court of Appeals, and Minnesota Supreme Court. A District Court Judge noted during his peer review that Steve is "a very capable, mature attorney who has a good way of working with family law clients in a way that defuses the often intense emotions that may be present." His accolades include American Academy of Trial Attorneys Premier 100 Trial Attorney, The National Advocates Top 100 Lawyers, American Institute of Family Law Attorneys 10 Best in Exceptional and Outstanding Client Service, and American Registry's Top Ten Percent America's Most Honored Professionals.
                   </p>
                   <p>
-                    Steven is recognized for his negotiation skills, pro bono work, and legal excellence, earning distinctions from Martindale-Hubbell and multiple legal organizations.
+                    A retired U.S. Army Reserve officer, Steve served for 22 years—a rare accomplishment shared by only 0.6% of the U.S. population. He deployed to Afghanistan from 2003 to 2004 as a Civil Affairs Officer during Operation Enduring Freedom and led overseas military missions in Germany and El Salvador. This service exemplifies his commitment to loyalty, duty, and selfless service—values he brings to every client relationship.
                   </p>
                   <p>
-                    He is also active in mentoring, youth sports coaching, and community service.
+                    Steve's dedication extends deeply into his community. For more than five years, he coached several hundred children as a volunteer youth athletic coach in volleyball, softball, basketball, and soccer. He served as a volunteer attorney coach for the Rochester John Marshall High School Mock Trial team, which placed second in its region. Currently, he mentors college students through the Gustavus Adolphus College Mentoring Program. For his pro bono work, the Minnesota State Bar Association has recognized Steve as a North Star Lawyer for providing 50 or more hours of pro bono legal services annually, and the Olmsted County Board of Commissioners has honored his dedication to pro bono service.
+                  </p>
+                  <p>
+                    In addition to family law, Steve drafts Wills, Powers of Attorney, and Health Care Directives.
                   </p>
                 </div>
+
+                <h3 className="text-xl font-bold mt-8 mb-4 text-gray-900">Practice Areas</h3>
+                <p className="text-gray-700">
+                  Marriage Dissolution, Child Custody, Family Support, Property Division, Adoption, Post-Dissolution Proceedings, Military Family Law, Wills, Powers of Attorney, Health Care Directives.
+                </p>
 
                 <div className="mt-8">
                   <Link href="/contact">
