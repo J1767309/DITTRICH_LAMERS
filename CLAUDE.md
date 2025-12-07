@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Dittrich & Lamers Law is a law firm website built with a modern full-stack React setup. It's a static marketing site deployed to GitHub Pages (under the `/DITTRICH_LAMERS/` base path in production).
+Dittrich & Lamers Law is a law firm website built with a modern full-stack React setup. It's a static marketing site deployed to Vercel at https://dittrich-lamers.vercel.app.
 
 **Tech Stack:**
 - Frontend: React 18 + TypeScript + Vite
@@ -57,7 +57,7 @@ shared/
 
 ### Key Architectural Patterns
 
-**Routing:** Uses Wouter with base path support. The `base` is set from `import.meta.env.BASE_URL` to handle both development (`/`) and production (`/DITTRICH_LAMERS/`) deployments.
+**Routing:** Uses Wouter with base path support. The `base` is set from `import.meta.env.BASE_URL` (always `/` for Vercel deployment).
 
 **Component Structure:** Pages are full-page components in `/pages`. Reusable UI components (Header, Footer, CredentialsCarousel) live in `/components`. Radix UI primitives (customized with Tailwind) are in `/components/ui`.
 
@@ -71,10 +71,13 @@ shared/
 ### Important Config Files
 
 **vite.config.ts:**
-- Sets production base path to `/DITTRICH_LAMERS/` for GitHub Pages
+- Base path is `/` for Vercel deployment
 - Configures path aliases: `@` → `client/src`, `@shared` → `shared`, `@assets` → `attached_assets`
 - Root is `client/` directory
 - Build output goes to `dist/public`
+
+**vercel.json:**
+- Configures Vercel build settings and SPA routing rewrites
 
 **tsconfig.json:** Standard TypeScript config with path aliases matching Vite's alias configuration.
 
@@ -93,10 +96,14 @@ shared/
 
 ## Build & Deployment
 
-The app is deployed to GitHub Pages as a static site. The build process:
-1. Vites builds the React app with base path `/DITTRICH_LAMERS/`
-2. esbuild bundles the Express server
-3. Both outputs are in `dist/`
-4. GitHub Actions (or manual) deploys `dist/public` to GitHub Pages
+The app is deployed to Vercel as a static site. The build process:
+1. Vite builds the React app to `dist/public/`
+2. Vercel serves the static files with SPA routing configured in `vercel.json`
 
-The Express server is minimal and primarily routes all requests to `index.html` for client-side routing to work (standard SPA pattern).
+**Vercel Configuration:**
+- Build command: `pnpm build`
+- Output directory: `dist/public`
+- Framework: Vite
+- All routes rewrite to `/index.html` for client-side routing
+
+The Express server (`server/index.ts`) is available for local development but not used in Vercel production deployment.
