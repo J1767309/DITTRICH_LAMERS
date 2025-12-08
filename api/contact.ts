@@ -32,13 +32,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     if (error) {
-      console.error("Resend error:", error);
-      return res.status(500).json({ error: "Failed to send email" });
+      console.error("Resend error:", JSON.stringify(error, null, 2));
+      return res.status(500).json({ error: "Failed to send email", details: error.message });
     }
 
     return res.status(200).json({ success: true, id: data?.id });
-  } catch (error) {
-    console.error("Server error:", error);
-    return res.status(500).json({ error: "Internal server error" });
+  } catch (error: any) {
+    console.error("Server error:", error?.message || error);
+    return res.status(500).json({ error: "Internal server error", details: error?.message });
   }
 }
