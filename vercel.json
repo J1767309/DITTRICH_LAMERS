@@ -1,10 +1,23 @@
 {
-  "buildCommand": "vite build",
+  "buildCommand": "pnpm build",
   "outputDirectory": "dist/public",
   "framework": null,
   "installCommand": "pnpm install",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/about", "destination": "/about/index.html" },
+    {
+      "source": "/practice-areas",
+      "destination": "/practice-areas/index.html"
+    },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    {
+      "source": "/attorneys/amber-lamers",
+      "destination": "/attorneys/amber-lamers/index.html"
+    },
+    {
+      "source": "/attorneys/steve-dittrich",
+      "destination": "/attorneys/steve-dittrich/index.html"
+    }
   ]
 }

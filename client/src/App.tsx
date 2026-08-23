@@ -4,7 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch, Router as WouterRouter } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider } from "@/lib/helmet";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import PracticeAreas from "./pages/PracticeAreas";
@@ -12,11 +12,17 @@ import Contact from "./pages/Contact";
 import AmberLamers from "./pages/AmberLamers";
 import SteveDittrich from "./pages/SteveDittrich";
 
-const base = import.meta.env.BASE_URL;
+const viteBase = import.meta.env?.BASE_URL || "/";
+const base = viteBase === "/" ? "" : viteBase.replace(/\/$/, "");
 
-function Router() {
+interface AppProps {
+  ssrPath?: string;
+  helmetContext?: Record<string, unknown>;
+}
+
+function Router({ ssrPath }: Pick<AppProps, "ssrPath">) {
   return (
-    <WouterRouter base={base}>
+    <WouterRouter base={base} ssrPath={ssrPath}>
       <Switch>
         <Route path={"/"} component={Home} />
         <Route path={"/about"} component={About} />
@@ -31,14 +37,14 @@ function Router() {
   );
 }
 
-function App() {
+function App({ ssrPath, helmetContext }: AppProps = {}) {
   return (
     <ErrorBoundary>
-      <HelmetProvider>
+      <HelmetProvider context={helmetContext}>
         <ThemeProvider defaultTheme="light">
           <TooltipProvider>
             <Toaster />
-            <Router />
+            <Router ssrPath={ssrPath} />
           </TooltipProvider>
         </ThemeProvider>
       </HelmetProvider>
@@ -47,4 +53,3 @@ function App() {
 }
 
 export default App;
-

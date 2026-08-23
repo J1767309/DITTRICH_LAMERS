@@ -16,11 +16,25 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
+  const publicPages = [
+    ["/", "index.html"],
+    ["/about", "about/index.html"],
+    ["/practice-areas", "practice-areas/index.html"],
+    ["/contact", "contact/index.html"],
+    ["/attorneys/amber-lamers", "attorneys/amber-lamers/index.html"],
+    ["/attorneys/steve-dittrich", "attorneys/steve-dittrich/index.html"],
+  ] as const;
+
+  for (const [route, file] of publicPages) {
+    app.get(route, (_req, res) => {
+      res.sendFile(path.join(staticPath, file));
+    });
+  }
+
   app.use(express.static(staticPath));
 
-  // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  app.use((_req, res) => {
+    res.status(404).sendFile(path.join(staticPath, "404.html"));
   });
 
   const port = process.env.PORT || 3000;

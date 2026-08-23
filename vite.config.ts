@@ -5,11 +5,15 @@ import path from "path";
 import { defineConfig } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
-
-export default defineConfig({
-  plugins,
-  base: '/',
+export default defineConfig(({ mode }) => ({
+  plugins: [
+    react(),
+    tailwindcss(),
+    ...(mode === "development"
+      ? [jsxLocPlugin(), vitePluginManusRuntime()]
+      : []),
+  ],
+  base: "/",
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "client", "src"),
@@ -41,4 +45,4 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
-});
+}));

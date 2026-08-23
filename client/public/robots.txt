@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dittrich-lamers-law.manus.space/sitemap.xml
-
+Sitemap: https://www.dittrichlamers.com/sitemap.xml
