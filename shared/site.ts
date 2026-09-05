@@ -48,7 +48,11 @@ export type PublicRoutePath = (typeof PUBLIC_ROUTES)[number]["path"];
 export const CANONICAL_REDIRECT_HOSTS = [
   "dittrichlamers.com",
   "dittrich-lamers.vercel.app",
+  "dittrich-lamers-john-jimenezs-projects-901fec21.vercel.app",
+  "dittrich-lamers-git-main-john-jimenezs-projects-901fec21.vercel.app",
   "dittrich-lamers-law.vercel.app",
+  "dittrich-lamers-law-john-jimenezs-projects-901fec21.vercel.app",
+  "dittrich-lamers-law-git-main-john-jimenezs-projects-901fec21.vercel.app",
 ] as const;
 
 export function getRouteOutputFile(route: PublicRoutePath): string {

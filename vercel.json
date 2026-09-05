@@ -32,7 +32,51 @@
       "has": [
         {
           "type": "host",
+          "value": "dittrich-lamers-john-jimenezs-projects-901fec21.vercel.app"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dittrich-lamers-git-main-john-jimenezs-projects-901fec21.vercel.app"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
           "value": "dittrich-lamers-law.vercel.app"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dittrich-lamers-law-john-jimenezs-projects-901fec21.vercel.app"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dittrich-lamers-law-git-main-john-jimenezs-projects-901fec21.vercel.app"
         }
       ],
       "destination": "https://www.dittrichlamers.com/:path*",
