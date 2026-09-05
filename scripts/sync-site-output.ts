@@ -1,6 +1,6 @@
 import fs from "node:fs";
+import { isDeepStrictEqual } from "node:util";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import {
   CANONICAL_REDIRECT_HOSTS,
   PUBLIC_ROUTES,
@@ -8,10 +8,7 @@ import {
   getRouteOutputFile,
 } from "../shared/site";
 
-const repositoryRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  ".."
-);
+const repositoryRoot = process.cwd();
 const writeChanges = process.argv.includes("--write");
 const lastModified = "2026-09-04";
 
@@ -54,12 +51,17 @@ ${PUBLIC_ROUTES.map(
 `;
 
 const generatedFiles = [
-  { path: path.join(repositoryRoot, "vercel.json"), content: vercelConfig },
+  {
+    path: path.join(repositoryRoot, "vercel.json"),
+    content: vercelConfig,
+    format: "json",
+  },
   {
     path: path.join(repositoryRoot, "client/public/sitemap.xml"),
     content: sitemap,
+    format: "text",
   },
-];
+] as const;
 
 let hasDrift = false;
 
@@ -74,7 +76,15 @@ for (const generatedFile of generatedFiles) {
     ? fs.readFileSync(generatedFile.path, "utf8")
     : "";
 
-  if (current !== generatedFile.content) {
+  const matches =
+    generatedFile.format === "json"
+      ? isDeepStrictEqual(
+          JSON.parse(current || "null"),
+          JSON.parse(generatedFile.content)
+        )
+      : current === generatedFile.content;
+
+  if (!matches) {
     hasDrift = true;
     console.error(
       `${path.relative(repositoryRoot, generatedFile.path)} is out of sync. Run pnpm sync:site.`
