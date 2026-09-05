@@ -5,12 +5,8 @@ import { Route, Switch, Router as WouterRouter } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { HelmetProvider } from "@/lib/helmet";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import PracticeAreas from "./pages/PracticeAreas";
-import Contact from "./pages/Contact";
-import AmberLamers from "./pages/AmberLamers";
-import SteveDittrich from "./pages/SteveDittrich";
+import Analytics from "@/components/Analytics";
+import { appRoutes } from "@/routes";
 
 const viteBase = import.meta.env?.BASE_URL || "/";
 const base = viteBase === "/" ? "" : viteBase.replace(/\/$/, "");
@@ -24,12 +20,13 @@ function Router({ ssrPath }: Pick<AppProps, "ssrPath">) {
   return (
     <WouterRouter base={base} ssrPath={ssrPath}>
       <Switch>
-        <Route path={"/"} component={Home} />
-        <Route path={"/about"} component={About} />
-        <Route path={"/attorneys/amber-lamers"} component={AmberLamers} />
-        <Route path={"/attorneys/steve-dittrich"} component={SteveDittrich} />
-        <Route path={"/practice-areas"} component={PracticeAreas} />
-        <Route path={"/contact"} component={Contact} />
+        {appRoutes.map(route => (
+          <Route
+            key={route.path}
+            path={route.path}
+            component={route.component}
+          />
+        ))}
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
@@ -44,6 +41,7 @@ function App({ ssrPath, helmetContext }: AppProps = {}) {
         <ThemeProvider defaultTheme="light">
           <TooltipProvider>
             <Toaster />
+            <Analytics />
             <Router ssrPath={ssrPath} />
           </TooltipProvider>
         </ThemeProvider>

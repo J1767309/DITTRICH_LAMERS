@@ -3,6 +3,7 @@ import path from "node:path";
 import React from "react";
 import { renderToString } from "react-dom/server";
 import App from "../client/src/App";
+import { PUBLIC_ROUTES, getRouteOutputFile } from "../shared/site";
 
 const outputDirectory = path.resolve("dist/public");
 const template = fs.readFileSync(
@@ -10,19 +11,10 @@ const template = fs.readFileSync(
   "utf8"
 );
 
-const routes = [
-  "/",
-  "/about",
-  "/practice-areas",
-  "/contact",
-  "/attorneys/amber-lamers",
-  "/attorneys/steve-dittrich",
-];
-
-for (const route of routes) {
+for (const route of PUBLIC_ROUTES) {
   const helmetContext: Record<string, unknown> = {};
   const appMarkup = renderToString(
-    <App ssrPath={route} helmetContext={helmetContext} />
+    <App ssrPath={route.path} helmetContext={helmetContext} />
   );
 
   const helmet = helmetContext.helmet as {
@@ -46,13 +38,10 @@ for (const route of routes) {
     )
     .replace('<div id="root"></div>', `<div id="root">${appMarkup}</div>`);
 
-  const target =
-    route === "/"
-      ? path.join(outputDirectory, "index.html")
-      : path.join(outputDirectory, route.slice(1), "index.html");
+  const target = path.join(outputDirectory, getRouteOutputFile(route.path));
 
   fs.mkdirSync(path.dirname(target), { recursive: true });
   fs.writeFileSync(target, html);
 }
 
-console.log(`Pre-rendered ${routes.length} public routes.`);
+console.log(`Pre-rendered ${PUBLIC_ROUTES.length} public routes.`);

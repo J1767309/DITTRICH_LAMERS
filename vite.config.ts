@@ -2,47 +2,68 @@ import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv, type HtmlTagDescriptor } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
-export default defineConfig(({ mode }) => ({
-  plugins: [
-    react(),
-    tailwindcss(),
-    ...(mode === "development"
-      ? [jsxLocPlugin(), vitePluginManusRuntime()]
-      : []),
-  ],
-  base: "/",
-  resolve: {
-    alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
-    },
-  },
-  envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname, "client"),
-  build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
-    emptyOutDir: true,
-  },
-  server: {
-    port: 3000,
-    strictPort: false, // Will find next available port if 3000 is busy
-    host: true,
-    allowedHosts: [
-      ".manuspre.computer",
-      ".manus.computer",
-      ".manus-asia.computer",
-      ".manuscomputer.ai",
-      ".manusvm.computer",
-      "localhost",
-      "127.0.0.1",
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, import.meta.dirname, "");
+  const verificationToken = env.VITE_GOOGLE_SITE_VERIFICATION?.trim();
+  const integrationTags: HtmlTagDescriptor[] = [];
+
+  if (verificationToken && /^[A-Za-z0-9_-]+$/.test(verificationToken)) {
+    integrationTags.push({
+      tag: "meta",
+      attrs: {
+        name: "google-site-verification",
+        content: verificationToken,
+      },
+      injectTo: "head",
+    });
+  }
+
+  return {
+    plugins: [
+      react(),
+      tailwindcss(),
+      {
+        name: "site-verification",
+        transformIndexHtml: () => integrationTags,
+      },
+      ...(mode === "development"
+        ? [jsxLocPlugin(), vitePluginManusRuntime()]
+        : []),
     ],
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
+    base: "/",
+    resolve: {
+      alias: {
+        "@": path.resolve(import.meta.dirname, "client", "src"),
+        "@shared": path.resolve(import.meta.dirname, "shared"),
+        "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      },
     },
-  },
-}));
+    envDir: path.resolve(import.meta.dirname),
+    root: path.resolve(import.meta.dirname, "client"),
+    build: {
+      outDir: path.resolve(import.meta.dirname, "dist/public"),
+      emptyOutDir: true,
+    },
+    server: {
+      port: 3000,
+      strictPort: false, // Will find next available port if 3000 is busy
+      host: true,
+      allowedHosts: [
+        ".manuspre.computer",
+        ".manus.computer",
+        ".manus-asia.computer",
+        ".manuscomputer.ai",
+        ".manusvm.computer",
+        "localhost",
+        "127.0.0.1",
+      ],
+      fs: {
+        strict: true,
+        deny: ["**/.*"],
+      },
+    },
+  };
+});

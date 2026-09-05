@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Dittrich & Lamers Law is a law firm website built with a modern full-stack React setup. It's a static marketing site deployed to Vercel at https://dittrich-lamers.vercel.app.
+Dittrich & Lamers, LLP is a law firm website built with a modern full-stack React setup. Its canonical production URL is https://www.dittrichlamers.com.
 
 **Tech Stack:**
 - Frontend: React 18 + TypeScript + Vite
@@ -52,7 +52,8 @@ server/
 ├── index.ts       # Express server entry point - serves static files, handles SPA routing
 
 shared/
-└── const.ts       # Shared constants between client and server
+├── const.ts       # Shared application constants
+└── site.ts        # Canonical URL and public route source of truth
 ```
 
 ### Key Architectural Patterns
@@ -84,9 +85,11 @@ shared/
 ## Development Notes
 
 **Adding New Pages:**
-1. Create a new component in `client/src/pages/`
-2. Add a route in `App.tsx` using `<Route path={"/path"} component={YourPage} />`
-3. Link to it from Header/navigation components
+1. Create a new component in `client/src/pages/`.
+2. Add its path and sitemap settings to `shared/site.ts`.
+3. Map the path to the component in `client/src/routes.tsx`.
+4. Run `pnpm sync:site` to regenerate `vercel.json` and `sitemap.xml`.
+5. Link to it from the appropriate navigation or content component.
 
 **Styling:** Use Tailwind classes. Custom components should extend from shadcn/ui components in `components/ui/` when applicable.
 
@@ -97,13 +100,16 @@ shared/
 ## Build & Deployment
 
 The app is deployed to Vercel as a static site. The build process:
-1. Vite builds the React app to `dist/public/`
-2. Vercel serves the static files with SPA routing configured in `vercel.json`
+1. The route registry consistency check verifies generated deployment files.
+2. Vite builds the React app to `dist/public/`.
+3. The prerenderer creates route-specific HTML for every public page.
+4. Vercel serves those files with exact rewrites and true 404 behavior.
 
 **Vercel Configuration:**
 - Build command: `pnpm build`
 - Output directory: `dist/public`
 - Framework: Vite
-- All routes rewrite to `/index.html` for client-side routing
+- Canonical-host redirects are permanent, and duplicate Vercel hosts redirect to the canonical domain.
+- Public-route rewrites are generated from `shared/site.ts`.
 
 The Express server (`server/index.ts`) is available for local development but not used in Vercel production deployment.

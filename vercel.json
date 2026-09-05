@@ -1,16 +1,61 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist/public",
   "framework": null,
   "installCommand": "pnpm install",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dittrichlamers.com"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dittrich-lamers.vercel.app"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "dittrich-lamers-law.vercel.app"
+        }
+      ],
+      "destination": "https://www.dittrichlamers.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/about", "destination": "/about/index.html" },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/about",
+      "destination": "/about/index.html"
+    },
     {
       "source": "/practice-areas",
       "destination": "/practice-areas/index.html"
     },
-    { "source": "/contact", "destination": "/contact/index.html" },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
     {
       "source": "/attorneys/amber-lamers",
       "destination": "/attorneys/amber-lamers/index.html"

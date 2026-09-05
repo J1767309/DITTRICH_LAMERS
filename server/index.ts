@@ -2,6 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
+import { PUBLIC_ROUTES, getRouteOutputFile } from "../shared/site";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,18 +17,9 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  const publicPages = [
-    ["/", "index.html"],
-    ["/about", "about/index.html"],
-    ["/practice-areas", "practice-areas/index.html"],
-    ["/contact", "contact/index.html"],
-    ["/attorneys/amber-lamers", "attorneys/amber-lamers/index.html"],
-    ["/attorneys/steve-dittrich", "attorneys/steve-dittrich/index.html"],
-  ] as const;
-
-  for (const [route, file] of publicPages) {
-    app.get(route, (_req, res) => {
-      res.sendFile(path.join(staticPath, file));
+  for (const route of PUBLIC_ROUTES) {
+    app.get(route.path, (_req, res) => {
+      res.sendFile(path.join(staticPath, getRouteOutputFile(route.path)));
     });
   }
 

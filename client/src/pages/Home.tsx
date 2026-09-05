@@ -99,8 +99,9 @@ export default function Home() {
               Supporting Families & Service Members Through Life's Transitions
             </p>
             <p className="text-sm md:text-base mb-4 max-w-2xl mx-auto">
-              More than <strong>30 years</strong> of combined experience serving
-              civilian and military families in Rochester, MN and beyond.
+              More than <strong>45 years</strong> of combined legal experience
+              serving civilian and military families in Rochester, MN and
+              beyond.
             </p>
             <Link href="/contact">
               <Button

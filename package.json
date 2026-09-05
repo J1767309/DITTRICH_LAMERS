@@ -5,10 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build && tsx --tsconfig tsconfig.prerender.json scripts/prerender.tsx && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "build": "pnpm check:site && vite build && tsx --tsconfig tsconfig.prerender.json scripts/prerender.tsx && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
-    "check": "tsc --noEmit",
+    "check": "tsc --noEmit && pnpm check:site",
+    "check:site": "tsx --tsconfig tsconfig.prerender.json scripts/sync-site-output.ts",
+    "sync:site": "tsx --tsconfig tsconfig.prerender.json scripts/sync-site-output.ts --write",
     "format": "prettier --write ."
   },
   "dependencies": {
@@ -39,6 +41,7 @@
     "@radix-ui/react-toggle-group": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
     "@tanstack/react-query": "^4.41.0",
+    "@vercel/analytics": "^2.0.1",
     "axios": "^1.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

@@ -20,12 +20,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (!apiKey) {
       return res.status(500).json({
         error: "Configuration error",
-        details: "RESEND_API_KEY not configured"
+        details: "RESEND_API_KEY not configured",
       });
     }
 
     const { Resend } = await import("resend");
     const resend = new Resend(apiKey);
+    const recipient =
+      process.env.CONTACT_FORM_RECIPIENT || "amber@dittrichlamers.com";
 
     const { firstName, lastName, email, phone, message } = req.body;
 
@@ -35,7 +37,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const { data, error } = await resend.emails.send({
       from: "Dittrich & Lamers Contact Form <contact@dittrichlamers.com>",
-      to: ["amber@dittrichlamers.com"],
+      to: [recipient],
       replyTo: email,
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
@@ -51,12 +53,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (error) {
       console.error("Resend error:", JSON.stringify(error, null, 2));
-      return res.status(500).json({ error: "Failed to send email", details: error.message });
+      return res
+        .status(500)
+        .json({ error: "Failed to send email", details: error.message });
     }
 
     return res.status(200).json({ success: true, id: data?.id });
   } catch (error: any) {
     console.error("Server error:", error?.message || error);
-    return res.status(500).json({ error: "Internal server error", details: error?.message });
+    return res
+      .status(500)
+      .json({ error: "Internal server error", details: error?.message });
   }
 }

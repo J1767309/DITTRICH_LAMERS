@@ -1,4 +1,7 @@
 import { Helmet } from "@/lib/helmet";
+import { SITE_URL } from "@shared/site";
+
+type StructuredDataNode = Record<string, unknown>;
 
 interface SEOProps {
   title?: string;
@@ -7,15 +10,63 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
-  structuredData?: object;
+  structuredData?: StructuredDataNode | StructuredDataNode[];
   noIndex?: boolean;
 }
 
-const SITE_URL = "https://www.dittrichlamers.com";
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+const organizationStructuredData = {
+  "@type": "LegalService",
+  "@id": ORGANIZATION_ID,
+  name: "Dittrich & Lamers, LLP",
+  description:
+    "Family law firm serving Rochester, Minnesota and surrounding communities in divorce, child custody, property division, support, adoption, appeals, and related matters.",
+  url: SITE_URL,
+  logo: `${SITE_URL}/DittrichLamers_Logo_outlined.png`,
+  image: `${SITE_URL}/attorneys-outdoor.jpg`,
+  telephone: "+1-507-288-7365",
+  email: "info@dittrichlamers.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "3143 Superior Drive NW, Suite C",
+    addressLocality: "Rochester",
+    addressRegion: "MN",
+    postalCode: "55901",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 44.0569776,
+    longitude: -92.5291048,
+  },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "08:00",
+    closes: "17:00",
+  },
+  areaServed: {
+    "@type": "City",
+    name: "Rochester",
+    containedIn: {
+      "@type": "State",
+      name: "Minnesota",
+    },
+  },
+  knowsAbout: [
+    "Family Law",
+    "Divorce",
+    "Child Custody",
+    "Property Division",
+    "Spousal Maintenance",
+    "Child Support",
+  ],
+};
 
 export default function SEO({
   title = "Dittrich & Lamers, LLP | Family Law Attorneys in Rochester, MN",
-  description = "Experienced family law attorneys in Rochester, Minnesota with more than 30 years of combined experience in divorce, child custody, property division, and related family law matters.",
+  description = "Experienced family law attorneys in Rochester, Minnesota with more than 45 years of combined legal experience in divorce, child custody, property division, and related family law matters.",
   keywords = "family law attorney Rochester MN, divorce lawyer Rochester Minnesota, child custody attorney, property division lawyer, family law firm Rochester, Dittrich Lamers",
   ogImage = "/attorneys-outdoor.jpg",
   ogType = "website",
@@ -24,56 +75,32 @@ export default function SEO({
   noIndex = false,
 }: SEOProps) {
   const fullCanonicalUrl = new URL(canonicalUrl, SITE_URL).toString();
-
-  const defaultStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "LegalService",
-    name: "Dittrich & Lamers, LLP",
-    description: description,
-    "@id": `${SITE_URL}/#organization`,
-    url: SITE_URL,
-    logo: `${SITE_URL}/DittrichLamers_Logo_outlined.png`,
-    image: new URL(ogImage, SITE_URL).toString(),
-    telephone: "+1-507-288-7365",
-    email: "info@dittrichlamers.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "3143 Superior Drive NW, Suite C",
-      addressLocality: "Rochester",
-      addressRegion: "MN",
-      postalCode: "55901",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 44.0569776,
-      longitude: -92.5291048,
-    },
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "08:00",
-      closes: "17:00",
-    },
-    areaServed: {
-      "@type": "City",
-      name: "Rochester",
-      containedIn: {
-        "@type": "State",
-        name: "Minnesota",
-      },
-    },
-    knowsAbout: [
-      "Family Law",
-      "Divorce",
-      "Child Custody",
-      "Property Division",
-      "Spousal Maintenance",
-      "Child Support",
-    ],
+  const additionalNodes = structuredData
+    ? Array.isArray(structuredData)
+      ? structuredData
+      : [structuredData]
+    : [];
+  const pageStructuredData: StructuredDataNode = {
+    "@type": "WebPage",
+    "@id": `${fullCanonicalUrl}#webpage`,
+    url: fullCanonicalUrl,
+    name: title,
+    description,
+    about: { "@id": ORGANIZATION_ID },
   };
 
-  const finalStructuredData = structuredData || defaultStructuredData;
+  if (additionalNodes[0]?.["@id"]) {
+    pageStructuredData.mainEntity = { "@id": additionalNodes[0]["@id"] };
+  }
+
+  const finalStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      organizationStructuredData,
+      pageStructuredData,
+      ...additionalNodes,
+    ],
+  };
 
   return (
     <Helmet>

@@ -12,6 +12,27 @@ export default function AmberLamers() {
         title="Amber Lamers - Family Law Attorney | Dittrich & Lamers, LLP"
         description="Meet Amber Lamers, an experienced family law attorney in Rochester, MN. Her practice includes divorce, custody, and appellate advocacy."
         canonicalUrl="/attorneys/amber-lamers"
+        structuredData={{
+          "@type": "Person",
+          "@id": "https://www.dittrichlamers.com/attorneys/amber-lamers#person",
+          name: "Amber Lamers",
+          url: "https://www.dittrichlamers.com/attorneys/amber-lamers",
+          image: "https://www.dittrichlamers.com/amber-lamers-photo.png",
+          jobTitle: "Family Law Attorney",
+          description:
+            "Family law attorney in Rochester, Minnesota whose practice includes divorce, custody, property division, business valuation, and appellate advocacy.",
+          worksFor: {
+            "@id": "https://www.dittrichlamers.com/#organization",
+          },
+          knowsAbout: [
+            "Family Law",
+            "Divorce",
+            "Child Custody",
+            "Property Division",
+            "Business Valuation",
+            "Family Law Appeals",
+          ],
+        }}
       />
       <Header />
 

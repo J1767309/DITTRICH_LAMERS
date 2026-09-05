@@ -12,6 +12,27 @@ export default function SteveDittrich() {
         title="Steve Dittrich - Family Law Attorney | Dittrich & Lamers, LLP"
         description="Meet Steve Dittrich, a family law attorney since 1999 and retired U.S. Army Reserve officer whose practice includes divorce, custody, and military family law in Rochester, MN."
         canonicalUrl="/attorneys/steve-dittrich"
+        structuredData={{
+          "@type": "Person",
+          "@id":
+            "https://www.dittrichlamers.com/attorneys/steve-dittrich#person",
+          name: "Steve Dittrich",
+          url: "https://www.dittrichlamers.com/attorneys/steve-dittrich",
+          image: "https://www.dittrichlamers.com/steve-dittrich.jpg",
+          jobTitle: "Family Law Attorney",
+          description:
+            "Family law attorney in Rochester, Minnesota whose practice includes divorce, custody, property division, support, and military family law.",
+          worksFor: {
+            "@id": "https://www.dittrichlamers.com/#organization",
+          },
+          knowsAbout: [
+            "Family Law",
+            "Divorce",
+            "Child Custody",
+            "Property Division",
+            "Military Family Law",
+          ],
+        }}
       />
       <Header />
 

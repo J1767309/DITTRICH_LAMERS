@@ -12,7 +12,7 @@ export default function About() {
     <div className="min-h-screen flex flex-col">
       <SEO
         title="About Us - Dittrich & Lamers, LLP Family Law Attorneys"
-        description="Meet Amber Lamers and Steve Dittrich, experienced family law attorneys in Rochester, MN with more than 30 years of combined experience serving families with divorce and related family law matters."
+        description="Meet Amber Lamers and Steve Dittrich, experienced family law attorneys in Rochester, MN with more than 45 years of combined legal experience serving families with divorce and related family law matters."
         canonicalUrl="/about"
       />
       <Header />
